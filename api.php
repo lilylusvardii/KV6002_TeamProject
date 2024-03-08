@@ -15,8 +15,14 @@ switch ($option) {
     case 'events':
         $endpoint = new Events();
         break;
-   
-        $endpoint = new Endpoint(['message' => 'No option specified']);
+    case 'login':
+       $endpoint = new Login();
+        break;
+    case 'admin':
+        $endpoint = new Admin();
+        break;
+
+    $endpoint = new Endpoint(['message' => 'No option specified']);
 }
  
 $data = $endpoint->getData();
