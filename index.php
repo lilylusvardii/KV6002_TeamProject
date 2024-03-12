@@ -23,13 +23,13 @@
                     <?
                     include 'db/Database.php' ;
 
-                    $sql = "SELECT eventname, description, location, capacity FROM em_events"; 
+                    $sql = "SELECT eventname, description, location, capacity FROM em_events where incomegroup = "; 
                     $result = $conn->query($sql);
 
                     //need to filter based on incomes
                     if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo "<li>" . $row["product_name"] . ": $" . $row["product_price"] . "</li>";
+                        echo "<li>" . $row["eventname"] . ": $" . $row["description"] . ": $" . $row["location"] . ": $" . $row["capacity"] ."</li>";
                     }
                 } else { 
                     echo "Sorry, there aren't any avaliable events";
