@@ -23,7 +23,7 @@
                     <?
                     include 'db/Database.php' ;
 
-                    $sql = "SELECT eventname, description, location, capacity FROM em_events where incomegroup = "; 
+                    $sql = "SELECT eventname, description, location, capacity FROM em_events"; 
                     $result = $conn->query($sql);
 
                     //need to filter based on incomes
