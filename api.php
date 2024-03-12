@@ -9,20 +9,23 @@ spl_autoload_register("autoloader");
  
 $response = new Response();
   
-$option = isset($_GET['option']) ? $_GET['option'] : null;
- 
-switch ($option) {
-    case 'events':
+try {
+switch ($endpointName) {
+    case '/events':
         $endpoint = new Events();
         break;
-    case 'login':
+    case '/login':
        $endpoint = new Login();
         break;
-    case 'admin':
-        $endpoint = new Admin();
+    case '/signup':
+        $endpoint = new SignUp();
         break;
 
     $endpoint = new Endpoint(['message' => 'No option specified']);
+}
+} catch (ClientError $e) { 
+    $data = ['message' => $e->getMessage()];
+    $endpoint = new Endpoint($data);
 }
  
 $data = $endpoint->getData();

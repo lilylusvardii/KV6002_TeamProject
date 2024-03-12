@@ -1,19 +1,18 @@
 <?php
  
-class Events extends Endpoint
+class SignUp extends Endpoint
 {
     public function __construct()
     {
         switch(Request::method()) {
             case 'GET':
-                $sql = "SELECT eventname, description, location, capacity, organiser FROM em_events";
+                $sql = "SELECT Name, username, password, phonenumber, location FROM em_signup";
                 $dbConn = new Database("");
                 $data = $dbConn->executeSQL($sql);
                 break; 
-            default; 
-                throw new ClientError(405); 
-            }
+            default;
+                throw new ClientError(404); 
+        }
                 parent::__construct($data);
-
     }
 }

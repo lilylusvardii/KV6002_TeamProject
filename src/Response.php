@@ -2,10 +2,13 @@
  
 class Response
 {
- 
     public function __construct()
     {
         $this->outputHeaders();
+ 
+        if (Request::method() == "OPTIONS") {
+            exit();
+        }
     }
     
     private function outputHeaders()
@@ -17,5 +20,4 @@ class Response
     {
         echo json_encode($data);
     }
- 
-}
+} 
