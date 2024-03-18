@@ -1,0 +1,12 @@
+body{
+	background-color: green;
+}
+form{
+	background-color:aquamarine;
+	width:25%;
+	margin:120px auto;
+	padding: 50px;
+	box-shadow: 10px 10px 5px
+	border-radius: 6px;
+}
+
