@@ -9,10 +9,9 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.php">Home</a></li>
                 <li><a href="SignUp.html">Sign Up</a></li>
                 <li><a href="Login.html">Login</a></li>
-                <li><a href="Events.html">Event management</a></li>
+                <li><a href="Events.html">Event Management</a></li>
             </ul>
         </nav>
     </header>
