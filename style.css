@@ -1,8 +1,8 @@
 body{
-	background-color: green;
+	background-color: rgba(170, 232, 235, 0.753);
 }
 form{
-	background-color:aquamarine;
+	background-color:rgba(58, 173, 189, 0.89);
 	width:25%;
 	margin:120px auto;
 	padding: 50px;

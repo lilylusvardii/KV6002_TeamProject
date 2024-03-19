@@ -25,7 +25,36 @@
         <input type="submit" value="Add Event">
     </form>
 
-    <h3>Manage Events</h3>
+    <h2>Delete Event</h2>
+    <form action="deleteEvents.php" method="POST">
+        <label for="event_id">select event to delete:</label><br>
+        <select id="event_id" name="event_id">
+        
+        </select><br><br>
+        <input type="submit" value="Delete Event">   
+        <?php
+            include 'db/Database.php';
+
+            //retrieving event ids and names
+            $sql = "SELECT event_id, event_name FROM events";
+            $result = $conn->query($sql);
+
+            // filling drop down with events if they're any
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "<option value='". $row["event_id"] ."'>". $row["eventname"] ."</option>";
+                }
+            } else {
+                echo "<option disabled>no events found</option>";
+            }
+
+            $conn->close();
+        ?>
+        </select><br><br>
+        <input type="submit" value="Delete Event">
+    </form> 
+    
+    
 
 </body>
 </html>
