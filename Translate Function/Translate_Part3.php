@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-            <html lang="en-US">
+            <html lang="en-UK">
             <body>
 
             <p id="textField">You can translate the content of this page by selecting a language in the select box.</p>
