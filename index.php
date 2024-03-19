@@ -17,6 +17,10 @@
         </nav>
     </header>
     <main>
+    <section>
+            <h2>Language selection</h2>
+            
+        </section>
         <section>
                 <h2>Events for you</h2>
                 <ul>
