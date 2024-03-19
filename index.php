@@ -10,7 +10,7 @@
         <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="SignUp.php">Sign Up</a></li>
+                <li><a href="SignUp.html">Sign Up</a></li>
                 <li><a href="Login.html">Login</a></li>
                 <li><a href="Events.html">Event management</a></li>
             </ul>
