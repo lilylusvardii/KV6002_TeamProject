@@ -1,6 +1,6 @@
 <?php
 
-include 'db/Database.php';
+include 'Database.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eventName = $conn->real_escape_string($_POST['eventName']);

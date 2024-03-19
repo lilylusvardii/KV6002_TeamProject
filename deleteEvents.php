@@ -1,5 +1,5 @@
 <?php
-    include 'db/Database.php';
+    include 'Database.php';
 
     if(isset($_POST['event_id'])) {
         $event_id = $_POST['event_id'];
