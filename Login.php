@@ -1,6 +1,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><?php
 		
-ini_set("session.save_path", "/home/unn_w21010751/sessionData");
+ini_set("session.save_path", "/Documents/KV6002_TeamProject/sessionData");
 session_start();		
 		
 ?>
