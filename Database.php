@@ -16,3 +16,4 @@ function getConnection() {
         exit();
     }
 }
+?>

@@ -27,8 +27,8 @@
         <section>
             <h2>Events for you</h2>
             <ul>
-                <?
-                    require 'Database.php' ;
+            <?php
+                    require 'Database.php';
                     $sql = "SELECT eventname, description, location, capacity FROM em_events"; 
                     try {
                         // Create a database connection and execute the query
@@ -37,28 +37,16 @@
                      
                         // Fetch all the data as an associative array
                         $data = $result->fetchAll(PDO::FETCH_ASSOC);
-                     
+
+                        foreach ($data as $row) {
+                            echo "<li>" . $row["eventname"] . ": " . $row["description"] . ": " . $row["location"] . ": " . $row["capacity"] . "</li>";
+                        }
                     } catch( PDOException $e ) {
                         // If there is an error, return an error message in JSON format
                         $error['error'] = "Database Query Error";
                         $error['message'] = $e->getMessage();
                      
                         $data = $error;
-                    }
-                    
-                    
-
-                    /*need to filter based on incomes
-                    if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<li>" . $row["eventname"] . ": $" . $row["description"] . ": $" . $row["location"] . ": $" . $row["capacity"] ."</li>";
-                    }
-                    } else { 
-                    echo "Sorry, there aren't any avaliable events";
-                    }  */       
-                    
-                    if ($result != 0 ) { 
-                        echo $row["eventname"]; 
                     }
                 ?>
             </ul>
