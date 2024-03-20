@@ -22,11 +22,11 @@
         </section>
         <section>
                 <h2>Events for you</h2>
-                <ul>
+                <div>
                     <?
                     include 'Database.php' ;
 
-                    $sql = "SELECT eventname, description, location, capacity FROM em_events"; 
+                    $sql = "SELECT eventname, description, location, capacity, income FROM em_events"; 
                     $result = $conn->query($sql);
 
                     //need to filter based on incomes
@@ -39,7 +39,7 @@
                 } 
                 $conn->close();
                 ?>
-                </ul>
+                </div>
         </section>
     </main>
 
