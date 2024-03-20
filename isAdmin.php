@@ -28,6 +28,6 @@ if(isset($_SESSION['user_id'])) {
         echo "error: " . $e->getMessage();
     }
 } else {
-    echo "not authorised for this content";
+    echo "Log in as admin to manage events";
 }
 ?>
