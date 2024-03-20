@@ -96,3 +96,12 @@ button {
 	color: #0066cc;
 	border-color: #3399ff;
 }
+
+ul {
+	list-style-type: none;
+	overflow: hidden;
+}
+
+li {
+	float: left;
+}
