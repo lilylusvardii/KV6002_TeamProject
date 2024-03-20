@@ -1,6 +1,26 @@
 <?php
 
-include 'Database.php';
+require 'Database.php';
+
+try {
+    // Create a database connection and execute the query
+    $dbConnection = getConnection();
+    $result = $dbConnection->query($sql);
+ 
+    // Fetch all the data as an associative array
+    $data = $result->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($data as $row) {
+        echo "<li>" . $row["eventname"] . ": " . $row["description"] . ": " . $row["location"] . ": " . $row["capacity"] . "</li>";
+    }
+} catch( PDOException $e ) {
+    // If there is an error, return an error message in JSON format
+    $error['error'] = "Database Query Error";
+    $error['message'] = $e->getMessage();
+ 
+    $data = $error;
+}
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $eventName = $conn->real_escape_string($_POST['eventName']);
