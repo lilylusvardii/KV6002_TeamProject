@@ -4,7 +4,6 @@ session_start();
 if(isset($_SESSION['isAdmin'])) {
     require 'Database.php'; 
 
-    try {
         $conn = getConnection(); 
 
         $sql = "SELECT cat_id FROM em_users WHERE username = :username";
@@ -24,9 +23,6 @@ if(isset($_SESSION['isAdmin'])) {
         $stmt = null;
         $conn = null;
 
-    } catch (PDOException $e) {
-        echo "error: " . $e->getMessage();
-    }
 } else {
     echo "Log in as admin to manage events";
 }
