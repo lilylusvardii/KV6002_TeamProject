@@ -17,9 +17,11 @@
     </header>
     <main>
         <section>
-            <h2>Language selection</h2>
-            <div id="google_translate_element"></div> <!-- Google Translate widget will appear here -->        </section>
+            <h4>Language selection</h4>
+            <div id="google_translate_element"></div> <!-- Google Translate widget will appear here -->  
         </section>
+        
+        
         <section>
             <h2>Events for you</h2>
             <ul>

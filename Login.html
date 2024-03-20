@@ -6,23 +6,40 @@
 <title>Log in</title>
 </head>
 <body>
-  <main>
-  <h2>Log in here</h2>
-  <ul>
-    <li><a href="index.php"> Home </a></li>
-  </ul>
-  <p>Login</p>
+    <main>
+      <h2>Log in here</h2>
+      <ul>
+        <li><a href="index.php"> Home </a></li>
+      </ul>
+        <section>
+          <h4>Language selection</h4>
+          <div id="google_translate_element"></div> <!-- Google Translate widget will appear here -->  
+        </section>
 
-  <form method="post" action="Login.php">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required><br><br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required><br><br>
-    <input type="submit" value="Log in">
-  </form>
+      <form method="post" action="Login.php">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Log in">
+      </form>
 
-  <a href="Logout.php">Log out</a>
+      <a href="Logout.php">Log out</a>
 
-  </main>
+    </main>
+
+    <!-- Google Translate -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+          new google.translate.TranslateElement({
+              pageLanguage: 'en',
+              includedLanguages: 'zh-CN,ms,es,en,fr',
+              layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+          }, 'google_translate_element');
+      }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <!-- End Google Translate -->
+
 </body>
 </html>
