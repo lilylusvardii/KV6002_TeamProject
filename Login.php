@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include 'Database.php';
+require 'Database.php' ;
 
 if ($conn->connect_error) {
     die("connection failed, " . $conn->connect_error);

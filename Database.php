@@ -1,30 +1,18 @@
 <?php
-$servername = "localhost"; 
-$username = "unn_w19039023"; 
-$password = "91106400As"; 
-$database = "unn_w19039023"; 
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+function getConnection() {
+ 
+    $dbName = "em.sqlite";
+ 
+    try {          
+        // Use PDO to create a connection to the database 
+        $conn = new PDO('sqlite:'.$dbName);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $conn;
+    } catch( PDOException $e ) {
+        $error['error'] = "Database Connection Error";
+        $error['message'] = $e->getMessage();
+        echo json_encode($error);
+        exit();
+    }
 }
-echo "Connected successfully";
-// SQL file to execute
-$sql_file = "em.sql"; 
-
-// Read SQL file
-$sql = file_get_contents($sql_file);
-
-// Execute multi-query
-if ($conn->multi_query($sql) === TRUE) {
-    echo "SQL file imported successfully";
-} else {
-    echo "Error importing SQL file: " . $conn->error;
-}
-
-// Close connection
-$conn->close();
-?>

@@ -56,7 +56,7 @@
         
         </select><br><br>
         <?php
-            include 'Database.php';
+            require 'Database.php' ;
 
             //retrieving event ids and names
             $sql = "SELECT event_id, event_name FROM events";
