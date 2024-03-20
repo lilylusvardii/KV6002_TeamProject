@@ -20,7 +20,7 @@
                 <li><a href="Login.html">Login</a></li>
                 <?php
                 require 'isAdmin.php';
-                require 'Logon.php';
+                require 'Login.php';
                 if ($admin == true) {
                     echo "<li><a href='Events.php'>Admin</a></li>";
                 }
