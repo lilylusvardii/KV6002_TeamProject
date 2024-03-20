@@ -6,6 +6,11 @@
     <title>Charity Events</title>
 </head>
 <body>
+        <section>
+            <h4>Language selection</h4>
+            <div id="google_translate_element"></div> <!-- Google Translate widget will appear here -->  
+        </section>
+
     <header>
         <nav>
             <ul>
@@ -16,10 +21,7 @@
         </nav>
     </header>
     <main>
-        <section>
-            <h4>Language selection</h4>
-            <div id="google_translate_element"></div> <!-- Google Translate widget will appear here -->  
-        </section>
+       
         
         
         <section>
@@ -27,19 +29,37 @@
             <ul>
                 <?
                     require 'Database.php' ;
-
                     $sql = "SELECT eventname, description, location, capacity FROM em_events"; 
-                    $result = $conn->query($sql);
+                    try {
+                        // Create a database connection and execute the query
+                        $dbConnection = getConnection();
+                        $result = $dbConnection->query($sql);
+                     
+                        // Fetch all the data as an associative array
+                        $data = $result->fetchAll(PDO::FETCH_ASSOC);
+                     
+                    } catch( PDOException $e ) {
+                        // If there is an error, return an error message in JSON format
+                        $error['error'] = "Database Query Error";
+                        $error['message'] = $e->getMessage();
+                     
+                        $data = $error;
+                    }
+                    
+                    
 
-                    //need to filter based on incomes
+                    /*need to filter based on incomes
                     if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<li>" . $row["eventname"] . ": $" . $row["description"] . ": $" . $row["location"] . ": $" . $row["capacity"] ."</li>";
                     }
                     } else { 
                     echo "Sorry, there aren't any avaliable events";
-                    } 
-                    $conn->close();
+                    }  */       
+                    
+                    if ($result != 0 ) { 
+                        echo $row["eventname"]; 
+                    }
                 ?>
             </ul>
         </section>
