@@ -26,7 +26,7 @@
             <h2>Events for you</h2>
             <ul>
                 <?
-                    include 'Database.php' ;
+                    include 'em.sql' ;
 
                     $sql = "SELECT eventname, description, location, capacity FROM em_events"; 
                     $result = $conn->query($sql);
