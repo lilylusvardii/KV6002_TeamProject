@@ -1,15 +1,15 @@
 <?php
 session_start();
 
-if(isset($_SESSION['user_id'])) {
+if(isset($_SESSION['isAdmin'])) {
     require 'Database.php'; 
 
     try {
         $conn = getConnection(); 
 
-        $sql = "SELECT cat_id FROM em_users WHERE cat_id = :cat_id";
+        $sql = "SELECT cat_id FROM em_users WHERE username = :username";
         $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':cat_id', $_SESSION['cat_id'], PDO::PARAM_INT);
+        $stmt->bindParam(':username', $_SESSION['username'], PDO::PARAM_INT);
         $stmt->execute();
 
         $isAdmin = $stmt->fetchColumn();
