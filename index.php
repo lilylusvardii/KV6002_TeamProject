@@ -16,14 +16,14 @@
         </nav>
     </header>
     <main>
-    <section>
+        <section>
             <h2>Language selection</h2>
-            
+            <div id="google_translate_element"></div> <!-- Google Translate widget will appear here -->        </section>
         </section>
         <section>
-                <h2>Events for you</h2>
-                <div>
-                    <?php
+            <h2>Events for you</h2>
+            <ul>
+                <?
                     include 'Database.php' ;
 
                     $sql = "SELECT eventname, description, location, capacity FROM em_events"; 
@@ -34,14 +34,27 @@
                     while ($row = $result->fetch_assoc()) {
                         echo "<li>" . $row["eventname"] . ": $" . $row["description"] . ": $" . $row["location"] . ": $" . $row["capacity"] ."</li>";
                     }
-                } else { 
+                    } else { 
                     echo "Sorry, there aren't any avaliable events";
-                } 
-                $conn->close();
+                    } 
+                    $conn->close();
                 ?>
-                </div>
+            </ul>
         </section>
     </main>
 
+    <!-- Google Translate -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'zh-CN,ms,es,en,fr',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <!-- End Google Translate -->
+    
 </body>
 </html>
