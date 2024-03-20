@@ -2,46 +2,52 @@
 
 require 'Database.php';
 
-try {
-    // Create a database connection and execute the query
-    $dbConnection = getConnection();
-    $result = $dbConnection->query($sql);
- 
-    // Fetch all the data as an associative array
-    $data = $result->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($data as $row) {
-        echo "<li>" . $row["eventname"] . ": " . $row["description"] . ": " . $row["location"] . ": " . $row["capacity"] . "</li>";
-    }
-} catch( PDOException $e ) {
-    // If there is an error, return an error message in JSON format
-    $error['error'] = "Database Query Error";
-    $error['message'] = $e->getMessage();
- 
-    $data = $error;
-}
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $eventName = $conn->real_escape_string($_POST['eventName']);
-    $desc = $conn->real_escape_string($_POST['desc']);
-    $location = $conn->real_escape_string($_POST['location']);
-    $capacity = $conn->real_escape_string($_POST['capacity']);
-    $organiser = $conn->real_escape_string($_POST['organiser']);
+    try {
+        // Create a database connection
+        $dbConnection = getConnection();
 
-    
+        // Escape user inputs to prevent SQL injection
+        $eventName = $dbConnection->quote($_POST['eventName']);
+        $desc = $dbConnection->quote($_POST['desc']);
+        $location = $dbConnection->quote($_POST['location']);
+        $capacity = $dbConnection->quote($_POST['capacity']);
+        $organiser = $dbConnection->quote($_POST['organiser']);
 
-    // Insert event data into database
-    $sql = "INSERT INTO events (eventName, description, location, capacity, organiser) VALUES ('$eventName', '$desc', '$location', '$capacity', '$organiser')";
-    if ($conn->query($sql) === TRUE) {
-        echo "event has been added successfully";
-    } else { 
-        echo "error: " . $sql . "<br>" . $conn->error;
+        // Insert event data into database
+        $sql = "INSERT INTO events (eventName, description, location, capacity, organiser) VALUES ($eventName, $desc, $location, $capacity, $organiser)";
+        if ($dbConnection->exec($sql)) {
+            echo "Event has been added successfully";
+        } else {
+            echo "Error occurred while adding the event";
+        }
+    } catch (PDOException $e) {
+        echo "Database error: " . $e->getMessage();
+    }
+} else {
+    try {
+        // Create a database connection
+        $dbConnection = getConnection();
+
+        // Fetch all the data as an associative array
+        $result = $dbConnection->query("SELECT eventname, description, location, capacity FROM events");
+        $data = $result->fetchAll(PDO::FETCH_ASSOC);
+
+        // Display events
+        echo "<ul>";
+        foreach ($data as $row) {
+            echo "<li>" . $row["eventname"] . ": " . $row["description"] . ": " . $row["location"] . ": " . $row["capacity"] . "</li>";
+        }
+        echo "</ul>";
+    } catch (PDOException $e) {
+        echo "Database error: " . $e->getMessage();
     }
 }
 
+// Close the database connection
+$dbConnection = null;
 
-$conn->close();
 ?>
+
 
 
