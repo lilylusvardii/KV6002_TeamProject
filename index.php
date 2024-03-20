@@ -23,10 +23,10 @@
         <section>
                 <h2>Events for you</h2>
                 <div>
-                    <?
+                    <?php
                     include 'Database.php' ;
 
-                    $sql = "SELECT eventname, description, location, capacity, income FROM em_events"; 
+                    $sql = "SELECT eventname, description, location, capacity FROM em_events"; 
                     $result = $conn->query($sql);
 
                     //need to filter based on incomes
