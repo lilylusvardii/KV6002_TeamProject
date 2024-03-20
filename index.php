@@ -19,7 +19,8 @@
                 <li><a href="SignUp.html">Sign Up</a></li>
                 <li><a href="Login.html">Login</a></li>
                 <?php
-                require_once 'isAdmin.php';
+                require 'isAdmin.php';
+                require 'Logon.php';
                 if ($admin == true) {
                     echo "<li><a href='Events.php'>Admin</a></li>";
                 }
