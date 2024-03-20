@@ -29,11 +29,10 @@ main {
 }
 nav {
 	grid-area: nav;
-	margin-right: 3%;
-	margin-left: 3%;
-	height: 100%;
+	margin-right: 5%;
+	margin-left: 5%;
 	background-color: #92b5f2;
-	font-size: 50%;
+	font-size: 80%;
 	font-family: Century Gothic;
 }
 
