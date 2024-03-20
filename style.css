@@ -1,12 +1,99 @@
-body{
-	background-color: rgba(170, 232, 235, 0.753);
+/* a display way to sorte the appearance of the page */
+#gridCont {
+	display: grid;
+	grid-template-rows:[header] auto [nav] auto [content] auto [footer] auto;
+	grid-template-columns: [aside] 30% [main] 70%;
+	grid-template-areas:
+			'header header '
+			'nav nav '
+			'aside main'
+			'footer footer';
 }
-form{
-	background-color:rgba(58, 173, 189, 0.89);
-	width:25%;
-	margin:120px auto;
-	padding: 50px;
-	box-shadow: 10px 10px 5px
-	border-radius: 6px;
+/* the header area with a auto flow and css*/
+header 	{
+	grid-area: header;
+	overflow: auto;
+	margin-top: 5px;
+	margin-left: 10px;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	font-family: Century Gothic;
+	text-align:center;
 }
 
+/* for main div */
+main {
+	grid-area: main;
+	margin-right: 3%;
+	margin-left: 3%;
+	height: 100%;
+}
+nav {
+	grid-area: nav;
+	margin-right: 3%;
+	margin-left: 3%;
+	height: 10%;
+	background-color: #92b5f2;
+	font-size: 20%;
+	font-family: Century Gothic;
+}
+
+/* all under is to style diffrent tags of html*/
+html, body {
+	background-color: #e8effc;
+	margin: 5px;
+	padding: 5px;
+	font-size: 90%;
+	font-family: Century Gothic;
+	line-height: 1.5;
+	margin: 5px;
+	padding: 0;
+}
+h1 {
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-left: 20px;
+	margin-bottom: 0;
+	font-size:3em;
+	color: #4578e3;
+}
+h3 {
+	font-size: 1.3em;
+	margin-left: 5px;
+	color: #4578e3;
+	font-family: Century Gothic;
+	text-align:center;
+}
+p {
+	font-size: 1.2em;
+	color: #73abe3;
+	margin-left: 20px;
+	margin-right: 20px;
+	font-family: segoe ui;
+}
+/*aside to display */
+aside {
+	grid-area: aside;
+	text-align:center;
+	padding: 0.4em;
+	letter-spacing: 2px;
+	font-size: 1.2em;
+	color: #3399ff;
+	background-color: #99ccff;
+}
+/* simple footer style */
+footer {
+	grid-area: footer;
+	color: #3399ff;
+	font-size: 0.9em;
+	text-align:center;
+	font-family: Century Gothic;
+	background-color: #abe3ff;
+}
+
+button {
+	font-family: Century Gothic;
+	font-size: 1.2em;
+	color: #0066cc;
+	border-color: #3399ff;
+}
