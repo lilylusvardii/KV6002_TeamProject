@@ -12,11 +12,16 @@
         </section>
 
     <header>
+        require_once 'isAdmin.php';
         <nav>
             <ul>
                 <li><a href="SignUp.html">Sign Up</a></li>
                 <li><a href="Login.html">Login</a></li>
-                <li><a href="Events.html">Event Management</a></li>
+                <?php
+                if ($admin == true) {
+                    echo "<li><a href='Events.php'>Admin</a></li>";
+                }
+                ?>
             </ul>
         </nav>
     </header>

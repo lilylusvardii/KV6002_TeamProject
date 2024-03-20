@@ -53,26 +53,31 @@
     <form action="deleteEvents.php" method="POST">
         <label for="event_id">select event to delete:</label><br>
         <select id="event_id" name="event_id">
-        
-        </select><br><br>
-        <?php
-            require 'Database.php' ;
+            <?php
+            include 'Database.php'; 
 
-            //retrieving event ids and names
-            $sql = "SELECT event_id, event_name FROM events";
-            $result = $conn->query($sql);
+            try {
+                $conn = getConnection();
 
-            // filling drop down with events if they're any
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    echo "<option value='". $row["event_id"] ."'>". $row["eventname"] ."</option>";
+                $sql = "SELECT event_id, eventname FROM em_events";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+
+                $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if (!empty($events)) {
+                    foreach ($events as $event) {
+                        echo "<option value='" . $event["event_id"] . "'>" . $event["eventname"] . "</option>";
+                    }
+                } else {
+                    echo "<option disabled>no events found</option>";
                 }
-            } else {
-                echo "<option disabled>no events found</option>";
+                $stmt = null;
+                $conn = null;
+            } catch (PDOException $e) {
+                echo "Database error: " . $e->getMessage();
             }
+            ?>
 
-            $conn->close();
-        ?>
         </select><br><br>
         <input type="submit" value="Delete Event">
     </form> 
