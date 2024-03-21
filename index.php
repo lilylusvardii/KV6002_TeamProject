@@ -18,7 +18,7 @@
             <ul>
                 <li><a href="SignUp.html">Sign Up</a></li>
                 <li><a href="Login.html">Login</a></li>
-                <li><a href='Events.php'>Admin</a></li>
+                <li><a href='Events.html'>Events Management</a></li>
             </ul>
         </nav>
     </header>
