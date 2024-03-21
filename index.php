@@ -50,8 +50,14 @@
 
                     if (count($events) > 0) {
                         foreach ($events as $event) {
-                            echo "<li>" . $event["eventname"] . ": " . $event["description"] . ": " . $event["location"] . ": " . $event["capacity"] . "</li>";
+                            echo "<li>";
+                            echo "<span class='event-name'>" . $event["eventname"] . "</span><br>";
+                            echo "<span class='event-details'>description: " . $event["description"] . "</span><br>";
+                            echo "<span class='event-details'>location: " . $event["location"] . "</span><br>";
+                            echo "<span class='event-details'>avaliable spaces: " . $event["capacity"] . "</span>";
+                            echo "</li>";
                         }
+                        
                     } else {
                         echo "sorry, no events currently";
                     }
