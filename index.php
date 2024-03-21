@@ -18,12 +18,7 @@
             <ul>
                 <li><a href="SignUp.html">Sign Up</a></li>
                 <li><a href="Login.html">Login</a></li>
-                <?php
-                require_once 'isAdmin.php';
-                if ($admin == true) {
-                    echo "<li><a href='Events.php'>Admin</a></li>";
-                }
-                ?>
+                <li><a href='Events.php'>Admin</a></li>
             </ul>
         </nav>
     </header>
@@ -32,7 +27,7 @@
         
         
         <section>
-            <h2>Events for you</h2>
+            <h2>Current Events</h2>
             <ul>
             <?php
             require 'Database.php';
@@ -55,7 +50,7 @@
                             echo "<span class='event-details'>description: " . $event["description"] . "</span><br>";
                             echo "<span class='event-details'>location: " . $event["location"] . "</span><br>";
                             echo "<span class='event-details'>avaliable spaces: " . $event["capacity"] . "</span>";
-                            echo "<a href='#' class='book-btn'>Book</a>";
+                            echo "<a href='#' class='book-btn'>Book</a>"; //book button
                             echo "</li>";
                         }
                         
@@ -66,7 +61,7 @@
                     echo "error executing query";
                 }
             } catch(PDOException $e) {
-                // If there is an error, display an error message
+                //error message 
                 echo "database error: " . $e->getMessage();
             }
             ?>

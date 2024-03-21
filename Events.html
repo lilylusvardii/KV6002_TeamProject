@@ -54,11 +54,8 @@
         <label for="event_id">select event to delete:</label><br>
         <select id="event_id" name="event_id">
             <?php
-            include 'Database.php'; 
-
             try {
                 $conn = getConnection();
-
                 $sql = "SELECT event_id, eventname FROM em_events";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
@@ -71,16 +68,18 @@
                 } else {
                     echo "<option disabled>no events found</option>";
                 }
-                $stmt = null;
-                $conn = null;
+                
             } catch (PDOException $e) {
-                echo "Database error: " . $e->getMessage();
-            }
-            ?>
+                echo "database error: " . $e->getMessage();
+            } 
 
+            $conn = null;
+            
+            ?>
         </select><br><br>
         <input type="submit" value="Delete Event">
-    </form> 
+    </form>
+
     
     
     </main>
