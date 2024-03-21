@@ -3,10 +3,14 @@ session_start();
     require 'Database.php' ;
 	
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $cat_id = 2;
-    $location = $_POST['location'];
+	
+   	// Create a database connection
+   	$dbConnection = getConnection();
+	
+    	$username = $_POST['username'];
+    	$password = $_POST['password'];
+    	$cat_id = 2;
+    	$location = $_POST['location'];
 	$phonenumber = $_POST['phonenumber'];
 	$icg_id = $_POST['icg_id'];
 
@@ -18,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindValue(':username', $username, SQLITE3_TEXT);
     $stmt->bindValue(':password', $hashedPassword, SQLITE3_TEXT);
     $stmt->bindValue(':cat_id', $cat_id, SQLITE3_TEXT);
-	$stmt->bindValue(':location', $location, SQLITE3_TEXT);
+    $stmt->bindValue(':location', $location, SQLITE3_TEXT);
     $stmt->bindValue(':phonenumber', $phonenumber, SQLITE3_TEXT);
     $stmt->bindValue(':icg_id', $icg_id, SQLITE3_TEXT);
     $result = $stmt->execute();
