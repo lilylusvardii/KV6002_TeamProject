@@ -16,8 +16,32 @@
         </nav>
     </header>
     <main>
-        
     </main>
 
+    <form action="signup.php" method="post">
+	
+	<label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
+        
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+	
+	<label for="location">location:</label>
+    <input type="text" id="location" name="location" required><br><br>
+        
+    <label for="phonenumber">phonenumber:</label>
+    <input type="text" id="phonenumber" name="phonenumber" required><br><br>
+	
+	<label for="icg_id">Income Group:</label>
+        <select id="icg_id" name="icg_id" required>
+            <option value="">Select Income Group</option>
+            <option value="1">0-4500</option>
+            <option value="2">4501-5500</option>
+			<option value="2">5501-6500</option>
+			<option value="2">6501-7900</option>
+        </select><br><br>
+ 
+</form>
+    
 </body>
 </html>
