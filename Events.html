@@ -63,7 +63,7 @@
                 $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 if (!empty($events)) {
                     foreach ($events as $event) {
-                        echo "<option value=" . $event["event_id"] . ">" . $event["eventname"] . "</option>";
+                        echo "<option value='" . $event["event_id"] . "'>" . $event["eventname"] . "</option>";
                     }
                 } else {
                     echo "<option disabled>no events found</option>";
