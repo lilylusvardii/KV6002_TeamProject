@@ -9,34 +9,29 @@ try {
             $eventName = $dbConnection->quote($_POST['eventName']);
             $desc = $dbConnection->quote($_POST['desc']);
             $location = $dbConnection->quote($_POST['location']);
-            $capacity = intval($_POST['capacity']); // Convert capacity to integer
+            $capacity = $dbConnection->quote($_POST['capacity']);
             $incomeGroup = $dbConnection->quote($_POST['incomeGroup']);
 
             //inserting into db
-            $sql = "INSERT INTO em_events (eventname, description, location, capacity, icg_id) VALUES ($eventName, $desc, $location, $capacity, $incomeGroup)";
+            $sql = "INSERT INTO em_events (eventname, description, location, capacity, icg_id) VALUES (:eventname, :description, :location, :capacity, :icg_id)";
             if ($dbConnection->exec($sql)) {
                 echo "your event has been added successfully!";
-            } else {
+            } 
+            
+            else {
                 echo "error event couldn't be added";
             }
-        } else {
-            echo "All fields are required";
-        }
+        } 
     } else {
-        $result = $dbConnection->query("SELECT eventname, description, location, capacity FROM em_events");
-        $data = $result->fetchAll(PDO::FETCH_ASSOC);
-
-        echo "<ul>";
-        foreach ($data as $row) {
-            echo "<li>" . $row["eventname"] . ": " . $row["description"] . ": " . $row["location"] . ": " . $row["capacity"] . "</li>";
-        }
-        echo "</ul>";
+        echo"error ";
     }
+       
 } catch (PDOException $e) {
-    echo "Database error: " . $e->getMessage();
+    echo "database error: " . $e->getMessage();
 }
 
-$dbConnection = null;
+$dbConnection = close();
+
 
 ?>
 
