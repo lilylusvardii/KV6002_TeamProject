@@ -55,6 +55,7 @@
                             echo "<span class='event-details'>description: " . $event["description"] . "</span><br>";
                             echo "<span class='event-details'>location: " . $event["location"] . "</span><br>";
                             echo "<span class='event-details'>avaliable spaces: " . $event["capacity"] . "</span>";
+                            echo "<a href='#' class='book-btn'>Book</a>";
                             echo "</li>";
                         }
                         
