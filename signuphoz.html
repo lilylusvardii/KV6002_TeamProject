@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <title>Charity Events</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="Login.html">Login</a></li>
+                <li><a href="Events.html">Event Management</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+    </main>
+
+    <form id="signupForm" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+            
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required><br><br>
+            
+        <label for="phonenumber">Phone Number:</label>
+        <input type="text" id="phonenumber" name="phone" required><br><br> <!-- Note the change here for name="phone" -->
+    
+        <label for="icg_id">Income Group:</label>
+        <select id="icg_id" name="icg_id" required>
+            <option value="">Select Income Group</option>
+            <option value="1">0-4500</option>
+            <option value="2">4501-5500</option>
+            <option value="3">5501-6500</option>
+            <option value="4">6501-7900</option>
+        </select><br><br>
+     
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <script>
+        document.getElementById('signupForm').onsubmit = function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => { data[key] = value; });
+
+            fetch('http://localhost:3001/signupForm', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error('Error:', error));
+        };
+    </script>
+</body>
+</html>
