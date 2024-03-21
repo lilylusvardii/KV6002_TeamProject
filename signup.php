@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO users (username, password, cat_id, location, phonenumber, icg_id) 
+    $sql = "INSERT INTO em_user (username, password, cat_id, location, phonenumber, icg_id) 
 					VALUES (:username, :password, :cat_id, :location, :phonenumber, :icg_id)";
     $stmt = $conn->prepare($sql);
     $stmt->bindValue(':username', $username, SQLITE3_TEXT);
