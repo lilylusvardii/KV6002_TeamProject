@@ -38,13 +38,15 @@
 
         <label for="capacity">Capacity:</label><br>
         <input type="number" id="capacity" name="capacity" required><br><br>
-
-        <label for="organiser">Organsier:</label><br>
-        <input type="text" id="organiser" name="organiser" required><br><br>
-
        
-        <label for="incomeGroup">Income Group:</label><br>
+        <label for="incomeGroup">Income Group:</label>
         <input type="number" id="incomeGroup" name="incomeGroup" required><br><br>
+        <label for="choice">choose income group: </label>
+        <select id="choice" name="choice">
+            <option value="1">1: </option>
+            <option value="2">2: </option>
+        </select>
+        <br><br>
 
         <input type="submit" value="Add Event">
     </form>
@@ -68,7 +70,7 @@
                 } else {
                     echo "<option disabled>no events found</option>";
                 }
-                
+
             } catch (PDOException $e) {
                 echo "database error: " . $e->getMessage();
             } 
