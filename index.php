@@ -35,27 +35,35 @@
             <h2>Events for you</h2>
             <ul>
             <?php
-                    require 'Database.php';
-                    $sql = "SELECT eventname, description, location, capacity FROM em_events"; 
-                    try {
-                        // Create a database connection and execute the query
-                        $dbConnection = getConnection();
-                        $result = $dbConnection->query($sql);
-                     
-                        // Fetch all the data as an associative array
-                        $data = $result->fetchAll(PDO::FETCH_ASSOC);
+            require 'Database.php';
 
-                        foreach ($data as $row) {
-                            echo "<li>" . $row["eventname"] . ": " . $row["description"] . ": " . $row["location"] . ": " . $row["capacity"] . "</li>";
+            try {
+                $conn = getConnection();
+                $sql = "SELECT eventname, description, location, capacity FROM em_events";
+
+                $result = $conn->query($sql);
+
+                //checking if the query executed successfully
+                if ($result) {
+
+                    $events = $result->fetchAll(PDO::FETCH_ASSOC);
+
+                    if (count($events) > 0) {
+                        foreach ($events as $event) {
+                            echo "<li>" . $event["eventname"] . ": " . $event["description"] . ": " . $event["location"] . ": " . $event["capacity"] . "</li>";
                         }
-                    } catch( PDOException $e ) {
-                        // If there is an error, return an error message in JSON format
-                        $error['error'] = "Database Query Error";
-                        $error['message'] = $e->getMessage();
-                     
-                        $data = $error;
+                    } else {
+                        echo "sorry, no events currently";
                     }
-                ?>
+                } else {
+                    echo "error executing query";
+                }
+            } catch(PDOException $e) {
+                // If there is an error, display an error message
+                echo "database error: " . $e->getMessage();
+            }
+            ?>
+
             </ul>
         </section>
     </main>
