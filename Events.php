@@ -1,8 +1,8 @@
 <?php
 require 'Database.php';
 
-try {
-    $dbConnection = getConnection();
+$dbConnection = getConnection();
+
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['eventName']) && isset($_POST['desc']) && isset($_POST['location']) && isset($_POST['capacity']) && isset($_POST['incomeGroup'])) {
@@ -26,11 +26,8 @@ try {
         echo"error ";
     }
        
-} catch (PDOException $e) {
-    echo "database error: " . $e->getMessage();
-}
 
-$dbConnection = close();
+$dbConnection = null ; 
 
 
 ?>
