@@ -25,11 +25,6 @@ $dbConnection = getConnection();
     } else {
         echo"error ";
     }
-       
-
-$dbConnection = null ; 
-
-
 ?>
 
 
