@@ -51,8 +51,8 @@
 
     <h2>Delete Event</h2>
     <form action="deleteEvents.php" method="POST">
-        <label for="eventid">select event to delete:</label><br>
-        <select id="eventid" name="eventid">
+        <label for="event_id">select event to delete:</label><br>
+        <select id="event_id" name="event_id">
             <?php
             try {
                 $conn = getConnection();
@@ -74,6 +74,7 @@
             } 
 
             $conn = null;
+            $stmt = close();
             
             ?>
         </select><br><br>
