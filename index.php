@@ -28,6 +28,7 @@
         
         <section>
             <h2>Current Events</h2>
+            <!-- part of the adding events subsystem -->
             <ul>
             <?php
             require 'Database.php';
@@ -43,6 +44,7 @@
 
                     $events = $result->fetchAll(PDO::FETCH_ASSOC);
 
+                    //displaying all current events
                     if (count($events) > 0) {
                         foreach ($events as $event) {
                             echo "<li>";
@@ -50,6 +52,7 @@
                             echo "<span class='event-details'>description: " . $event["description"] . "</span><br>";
                             echo "<span class='event-details'>location: " . $event["location"] . "</span><br>";
                             echo "<span class='event-details'>avaliable spaces: " . $event["capacity"] . "</span>";
+                            echo "<span class='event-details'>date: " . $event["date"] . "</span>";
                             echo "<a href='#' class='book-btn'>click to book</a>"; //book button
                             echo "</li>";
                         }
