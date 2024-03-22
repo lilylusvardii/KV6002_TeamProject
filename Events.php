@@ -11,7 +11,7 @@ require 'Database.php';
 $dbConnection = getConnection();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['eventName']) && isset($_POST['desc']) && isset($_POST['location']) && isset($_POST['capacity']) && isset($_POST['incomeGroup'])isset($_POST['date'])) {
+    if (isset($_POST['eventName']) && isset($_POST['desc']) && isset($_POST['location']) && isset($_POST['capacity']) && isset($_POST['incomeGroup']) && isset($_POST['date'])) {
         try {
             //preparing sql statements
             $sql = "INSERT INTO em_events (eventname, description, location, capacity, icg_id, date) VALUES (:eventname, :description, :location, :capacity, :icg_id, :date)";
