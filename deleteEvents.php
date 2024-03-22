@@ -2,27 +2,26 @@
 include 'Database.php';
 
 if(isset($_POST['event_id'])) {
-    $event_id = intval($_POST['event_id']);
-    $sql = "DELETE FROM events WHERE event_id = ?";
-    $stmt = $conn->prepare($sql);
+    try {
+        $event_id = intval($_POST['event_id']);
+        $sql = "DELETE FROM em_events WHERE event_id = :event_id";
+        $stmt = $conn->prepare($sql);
 
-    if ($stmt) {
-        $stmt->bind_param("i", $event_id);
+        $stmt->bindParam(':event_id', $event_id, PDO::PARAM_INT);
+
         if ($stmt->execute()) {
-            echo "the event has been deleted successfully";
+            echo "the event has been deleted successfully!";
         } else {
-            echo "error with deleting event: " . $conn->error;
+            echo "error: event couldn't be deleted";
         }
-        
-        $stmt->close();
-    } else {
-        echo "error in backend: " . $conn->error;
+    } catch (PDOException $e) {
+        echo "database error: " . $e->getMessage();
     }
 } else {
-    echo "no event ID";
+    echo "error!";
 }
 
-$conn->close();
+$conn = null; 
 ?>
 
 
