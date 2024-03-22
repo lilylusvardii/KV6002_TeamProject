@@ -35,7 +35,7 @@
 
             try {
                 $conn = getConnection();
-                $sql = "SELECT eventname, description, location, capacity FROM em_events";
+                $sql = "SELECT eventname, description, location, capacity, date FROM em_events";
 
                 $result = $conn->query($sql);
 
