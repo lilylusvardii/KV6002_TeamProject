@@ -21,10 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
     $stmt->bindValue(':username', $username, SQLITE3_TEXT);
     $stmt->bindValue(':password', $hashedPassword, SQLITE3_TEXT);
-    $stmt->bindValue(':cat_id', $cat_id, SQLITE3_TEXT);
+    $stmt->bindValue(':cat_id', $cat_id, SQLITE3_INTEGER);
     $stmt->bindValue(':location', $location, SQLITE3_TEXT);
     $stmt->bindValue(':phonenumber', $phonenumber, SQLITE3_TEXT);
-    $stmt->bindValue(':icg_id', $icg_id, SQLITE3_TEXT);
+    $stmt->bindValue(':icg_id', $icg_id, SQLITE3_INTEGER);
     $result = $stmt->execute();
 
     if ($result) {
