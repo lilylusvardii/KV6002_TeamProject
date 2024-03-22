@@ -3,15 +3,12 @@ session_start();
 
 require 'Database.php' ;
 
-if ($conn->connect_error) {
-    die("connection failed: " . $conn->connect_error);
-}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM em_users WHERE username = '$username' AND password = '$password'";
+    $sql = "SELECT * FROM em_user WHERE username = '$username' AND password = '$password'";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
