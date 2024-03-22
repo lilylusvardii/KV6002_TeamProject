@@ -26,8 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute()) {
                 echo "your event has been added successfully!";
+                echo '<a href="index.php"> click here to go back to the home page</a><br>';
+                echo '<a href="Events.html"> click here to go back to the events managment page</a>';
             } else {
                 echo "error, event couldn't be added";
+                echo '<a href="index.php"> click here to go back to the home page</a><br>'
+                echo '<a href="Events.html"> click here to go back to the events managment page</a>';
             }
         } catch (PDOException $e) {
             echo "database error: " . $e->getMessage();
