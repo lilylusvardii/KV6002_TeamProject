@@ -43,9 +43,10 @@
         </select><br><br>
      <button type="submit">Sign Up</button>
 </form>
-
+<script src="server.SIGNhoz.js">
+</script>
 	<script>
-        document.getElementById('phonenumber').onsubmit = function(event) {
+        document.getElementById('signup.php').onsubmit = function(event) {
             event.preventDefault(); // Prevent the default form submission
             const formData = new FormData(this);
             const data = {};
