@@ -5,7 +5,7 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	
    	// Create a database connection
-   	$dbConnection = getConnection();
+   	$conn = getConnection();
 	
     	$username = $_POST['username'];
     	$password = $_POST['password'];
