@@ -25,7 +25,7 @@
         </nav>
     </header>
     
-    <h2>Add Event</h2>
+    <h2>Add Event</h2> <!-- add events form -->
     <form action="Events.php" method="POST">
         <label for="eventName">Event Name:</label><br>
         <input type="text" id="eventName" name="eventName" required><br><br>
@@ -39,21 +39,21 @@
         <label for="capacity">Capacity:</label><br>
         <input type="number" id="capacity" name="capacity" required><br><br>
        
-        <label for="incomeGroup">choose income group: </label>
+        <label for="incomeGroup">choose income group: </label> <!-- multiple choice option for income groups -->
         <select id="incomeGroup" name="incomeGroup">
             <option value="1">0-4500: </option>
             <option value="2">4501-5500: </option>
         </select>
         <br><br>
 
-        <label for="date">Date (in the format DD/MM/YYYY):</label><br>
+        <label for="date">Date (in the format DD/MM/YYYY):</label><br> <!-- suggested format, no validation on backend yet -->
         <input type="text" id="date" name="date" required><br><br>
 
         <input type="submit" value="Add Event">
     </form>
 
     <h2>Delete Event</h2>
-    <form action="deleteEvents.php" method="POST">
+    <form action="deleteEvents.php" method="POST"> <!-- deleting events form - drop down list -->
         <label for="event_id">select event to delete:</label><br>
         <select id="event_id" name="event_id">
             <?php
