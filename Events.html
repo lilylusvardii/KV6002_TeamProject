@@ -57,27 +57,21 @@
         <label for="event_id">select event to delete:</label><br>
         <select id="event_id" name="event_id">
             <?php
-            try {
-                $conn = getConnection(); //db connection
-                $sql = "SELECT event_id, eventname FROM em_events"; //sql to get events from table
-                $stmt = $conn->prepare($sql); //preparing sql statement
-                $stmt->execute(); //executing sql statement
-
-                $events = $stmt->fetchAll(PDO::FETCH_ASSOC); //fetching the events as an associative array
-                if (!empty($events)) { //checking that the array of events isnt empty
-                    foreach ($events as $event) { //looping through and displaying each event in drop down
-                        echo "<option value='" . $event["event_id"] . "'>" . $event["eventname"] . "</option>"; //populating dropdown 
-                    }
-                } else {
-                    echo "<option disabled>no events found</option>"; //displaying message if no events found
+            $conn = getConnection();
+            $sql = "SELECT event_id, eventname FROM em_events";
+            $result = $conn->query($sql);
+        
+            if ($result && $result->rowCount() > 0) {
+                foreach ($result as $row) {
+                    echo "<option value='" . $row["event_id"] . "'>" . $row["eventname"] . "</option>";
                 }
-
-                $conn = null; //closing db connection
-                
-            } catch (PDOException $e) { //error handling with catch statement
-                echo "database error: " . $e->getMessage(); 
+            } else {
+                echo "<option disabled>no events found :(</option>";
             }
+        
+            $conn = null;
             ?>
+
         </select>
         <br><br>
         <input type="submit" value="Delete Event">

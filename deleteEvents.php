@@ -7,7 +7,7 @@ if(isset($_POST['event_id'])) { //if theres an event id in the post request
     try { //try and catch for error handling (might have to remove caused errors in other code)
         
         $conn = getConnection(); //db connection
-        $event_id = intval($_POST['event_id']);
+        $event_id = ($_POST['event_id']);
         $sql = "DELETE FROM em_events WHERE event_id = :event_id"; //delete sql statement
          
         $stmt = $conn->prepare($sql); //preparing statement
