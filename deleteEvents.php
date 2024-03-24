@@ -22,7 +22,7 @@ if(isset($_POST['event_id'])) { //if theres an event id in the post request
             echo '<a href="index.php"> click here to go back to the home page</a><br>';
             echo '<a href="Events.html"> click here to go back to the events management page</a>';
         }
-        close($conn, $stmt); //closing db connection
+        $conn = null; //closing db connection
          
     } catch (PDOException $e) { 
         echo "database error: " . $e->getMessage();
