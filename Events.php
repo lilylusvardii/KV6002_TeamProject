@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo '<a href="Events.html"> click here to go back to the events managment page</a>';
             } else {
                 echo "error, event couldn't be added"; //error handling
-                echo '<a href="index.php"> click here to go back to the home page</a><br>'
+                echo '<a href="index.php"> click here to go back to the home page</a><br>';
                 echo '<a href="Events.html"> click here to go back to the events managment page</a>';
             }
         } catch (PDOException $e) {

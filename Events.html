@@ -59,31 +59,30 @@
             <?php
             try {
                 $conn = getConnection(); //db connection
-                $sql = "SELECT event_id, eventname FROM em_events"; //sql statement to display events in drop down
-                $stmt = $conn->prepare($sql); //preparing statement
-                $stmt->execute(); //executing statement 
-            
-                $events = $stmt->fetchAll(PDO::FETCH_ASSOC); //fetching all rows and putting them into an associative array
-                if (!empty($events)) { //filling drop down with events from events table, the events can be added through the events form
-                    foreach ($events as $event) { //outputting each event (just id and name) in the drop down
-                        echo "<option value='" . $event["event_id"] . "'>" . $event["eventname"] . "</option>";
+                $sql = "SELECT event_id, eventname FROM em_events"; //sql to get events from table
+                $stmt = $conn->prepare($sql); //preparing sql statement
+                $stmt->execute(); //executing sql statement
+
+                $events = $stmt->fetchAll(PDO::FETCH_ASSOC); //fetching the events as an associative array
+                if (!empty($events)) { //checking that the array of events isnt empty
+                    foreach ($events as $event) { //looping through and displaying each event in drop down
+                        echo "<option value='" . $event["event_id"] . "'>" . $event["eventname"] . "</option>"; //populating dropdown 
                     }
                 } else {
-                    echo "<option disabled>no events found :(</option>"; //if there's no events in events table drop down not filled
+                    echo "<option disabled>no events found</option>"; //displaying message if no events found
                 }
-            }catch (PDOException $e) {
-                echo "database error: " . $e->getMessage(); //displaying errors in db in catch statement
-            } 
-            
-                $conn = null; //closing db connection
-            ?>
 
-        </select><br><br>
+                $conn = null; //closing db connection
+                
+            } catch (PDOException $e) { //error handling with catch statement
+                echo "database error: " . $e->getMessage(); 
+            }
+            ?>
+        </select>
+        <br><br>
         <input type="submit" value="Delete Event">
     </form>
-
-    
-    
+   
     </main>
 
      <!-- Google Translate -->
