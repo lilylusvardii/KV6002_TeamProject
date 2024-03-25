@@ -57,6 +57,7 @@
         <label for="event_id">select event to delete:</label><br>
         <select id="event_id" name="event_id">
             <?php
+            include 'Database.php';
             $conn = getConnection();
             $sql = "SELECT event_id, eventname FROM em_events";
             $result = $conn->query($sql);
