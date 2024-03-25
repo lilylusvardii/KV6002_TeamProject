@@ -16,11 +16,11 @@ if(isset($_POST['event_id'])) { //if theres an event id in the post request
         if ($stmt->execute()) { //executing the sql statement 
             echo "the event has been deleted successfully!"; //if else to deal with possible outcomes
             echo '<a href="index.php"> click here to go back to the home page</a><br>';
-            echo '<a href="Events.html"> click here to go back to the events management page</a>'; //links back to home page so user isnt stuck
+            echo '<a href="Events.php"> click here to go back to the events management page</a>'; //links back to home page so user isnt stuck
         } else {
             echo "error the event couldn't be deleted";
             echo '<a href="index.php"> click here to go back to the home page</a><br>';
-            echo '<a href="Events.html"> click here to go back to the events management page</a>';
+            echo '<a href="Events.php"> click here to go back to the events management page</a>';
         }
         $conn = null; //closing db connection
          

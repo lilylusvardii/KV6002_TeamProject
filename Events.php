@@ -1,49 +1,97 @@
-<?php
-//part of adding events subsystem, this is to add new events to database
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Event Management</title>
+</head>
+<body>
+    <main>
+    <section>
+        <h4>Language selection</h4>
+        <div id="google_translate_element"></div> <!-- Google Translate widget will appear here -->  
+    </section>
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL); //php error handing - had an error with the syntax in this document (now functioning) 
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="SignUp.php">Sign Up</a></li>
+                <li><a href="Login.php">Login</a></li>
 
-//db connection
-require 'Database.php';
+            </ul>
+        </nav>
+    </header>
+    <!-- adding events subsystem -->
+        
+    <h2>Add Event</h2> <!-- add events form -->
+    <form action="addEvents.php" method="POST">
+        <label for="eventName">Event Name:</label><br>
+        <input type="text" id="eventName" name="eventName" required><br><br>
 
-$dbConnection = getConnection(); //db connection
+        <label for="desc">Description:</label><br>
+        <input type="text" id="desc" name="desc" required><br><br>
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['eventName']) && isset($_POST['desc']) && isset($_POST['location']) && isset($_POST['capacity']) && isset($_POST['incomeGroup']) && isset($_POST['date'])) {
-        try {
-            //preparing sql statements
-            $sql = "INSERT INTO em_events (eventname, description, location, capacity, icg_id, date) VALUES (:eventname, :description, :location, :capacity, :icg_id, :date)";
-            $stmt = $dbConnection->prepare($sql);
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location" required><br><br>
 
-            $stmt->bindParam(':eventname', $_POST['eventName']); //binding parameters
-            $stmt->bindParam(':description', $_POST['desc']);
-            $stmt->bindParam(':location', $_POST['location']);
-            $stmt->bindParam(':capacity', $_POST['capacity']);
-            $stmt->bindParam(':icg_id', $_POST['incomeGroup']);
-            $stmt->bindParam(':date', $_POST['date']);
+        <label for="capacity">Capacity:</label><br>
+        <input type="number" id="capacity" name="capacity" required><br><br>
+       
+        <label for="incomeGroup">choose income group: </label> <!-- multiple choice option for income groups -->
+        <select id="incomeGroup" name="incomeGroup">
+            <option value="1">0-4500: </option>
+            <option value="2">4501-5500: </option>
+        </select>
+        <br><br>
 
-            //executing the prepared statement 
-            if ($stmt->execute()) { 
-                echo "your event has been added successfully!"; //letting user know event has been added 
-                echo '<a href="index.php"> click here to go back to the home page</a><br>';
-                echo '<a href="Events.html"> click here to go back to the events managment page</a>';
+        <label for="date">Date (in the format DD/MM/YYYY):</label><br> <!-- suggested format, no validation on backend yet -->
+        <input type="text" id="date" name="date" required><br><br>
+
+        <input type="submit" value="Add Event">
+    </form>
+
+    <h2>Delete Event</h2>
+    <form action="deleteEvents.php" method="POST"> <!-- deleting events form - drop down list -->
+        <label for="event_id">select event to delete:</label><br>
+        <select id="event_id" name="event_id">
+            <?php
+            include 'Database.php';
+            $conn = getConnection();
+            $sql = "SELECT event_id, eventname FROM em_events";
+            $result = $conn->query($sql);
+        
+            if ($result && $result->rowCount() > 0) {
+                foreach ($result as $row) {
+                    echo "<option value='" . $row["event_id"] . "'>" . $row["eventname"] . "</option>";
+                }
             } else {
-                echo "error, event couldn't be added"; //error handling
-                echo '<a href="index.php"> click here to go back to the home page</a><br>';
-                echo '<a href="Events.html"> click here to go back to the events managment page</a>';
+                echo "<option disabled>no events found</option>";
             }
-        } catch (PDOException $e) {
-            echo "database error: " . $e->getMessage(); //error handling
+        
+            $conn = null;
+            ?>
+
+        </select>
+        <br><br>
+        <input type="submit" value="Delete Event">
+    </form>
+   
+    </main>
+
+     <!-- Google Translate -->
+     <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'zh-CN,ms,es,en,fr',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
         }
-    }
-} else {
-    echo "error!";
-}
-?>
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <!-- End Google Translate -->
 
-
-
-
-
+</body>
+</html>
