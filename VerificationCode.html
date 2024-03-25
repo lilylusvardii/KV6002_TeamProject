@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Verification Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        input[type="text"] {
+            font-size: 16px;
+            padding: 10px;
+            width: 200px;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form id = "Verification">
+        <label for="verificationCode">Verification Code:</label>
+        <input type="text" id="verificationCode" name="verificationCode" patterm = "`d{6}" 
+               title = "verification code must be 6 digits long" maxlength="6" minlength="6" required>
+        <button type="button" id = "submitBtn">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const form = document.getElementById('verificationForm');
+            const code = document.getElementById('verificationCode').value;
+
+            // Check if the code is entered and meets the pattern requirement
+            if (code.match(/^\d{6}$/)) {
+                // Redirect to the home page if the code is valid
+                window.location.href = 'indexhoz.php';
+            } else {
+                // Optionally, alert the user if the code is invalid
+                alert('Please enter a valid 6-digit verification code.');
+                // Prevent form submission
+                event.preventDefault();
+            }
+        });
+    </script>
+
+
+
+</body>
+</html>

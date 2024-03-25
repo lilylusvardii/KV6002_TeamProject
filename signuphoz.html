@@ -12,7 +12,7 @@
             <ul>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="Login.html">Login</a></li>
-                <li><a href="Events.php">Event Management</a></li>
+                <li><a href="Events.html">Event Management</a></li>
             </ul>
         </nav>
     </header>
@@ -41,13 +41,29 @@
             <option value="4">6501-7900</option>
         </select><br><br>
      
-        <button type="submit">Sign Up</button>
+        <button type="submit" id = "SignupButton">Sign Up</button>
     </form>
 
     <script>
-        document.getElementById('signupForm').onsubmit = function(event) {
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the default form submission
             const formData = new FormData(this);
+            let isValid = true;
+            
+            // Check each field in the form data to ensure it's not empty
+            for (let value of formData.values()) {
+                if (!value) {
+                    isValid = false;
+                    break;
+                }
+            }
+
+            if (!isValid) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            // If all fields are filled, proceed with the fetch request
             const data = {};
             formData.forEach((value, key) => { data[key] = value; });
 
@@ -59,9 +75,16 @@
                 body: JSON.stringify(data),
             })
             .then(response => response.json())
-            .then(data => alert(data.message))
-            .catch(error => console.error('Error:', error));
-        };
+            .then(data => {
+                alert(data.message);
+                // Redirect only after a successful form submission
+                window.location.href = 'VerificationCode.html';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred, please try again.');
+            });
+        });
     </script>
 </body>
 </html>
