@@ -15,7 +15,7 @@
     <main>
 
     <h3>booking confirmed!</h3><br>
-    <p><a href="index.php"> click here to go back to the home page</a><br></p><br>
+    <h3><a href="index.php"> click here to go back to the home page</a></h3><br>
 
     </main>
 
