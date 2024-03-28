@@ -16,8 +16,8 @@
         <nav>
             <ul>
                 <li><a href="signuphoz.html">Sign Up</a></li>
-                <li><a href="Login.html">Login</a></li>
-                <li><a href='Events.html'>Events Management</a></li>
+                <li><a href="Login.html"> Login</a></li>
+                <li><a href='Events.html'> Events Management</a></li>
             </ul>
         </nav>
     </header>
