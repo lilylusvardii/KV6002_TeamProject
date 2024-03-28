@@ -25,8 +25,6 @@
     <main>
 
         <h2>confirm booking below</h2>
-        
-        <strong>input type="checkbox"</strong>
         <form action="/bookingConfirmed.php">
             <input type="checkbox" id="check1" name="check1" value="confirm1">
             <label for="confirm1"> I agree I've read the terms and conditions</label><br>
@@ -35,7 +33,7 @@
             <input type="checkbox" id="check3" name="check3" value="confirm3">
             <label for="check3"> By booking this event I'm aware I should attend or cancel if I'm unable to go anymore</label><br><br>
 
-            <li><input type="submit" value="confirm booking"></li>
+            <input type="submit" value="click to confirm booking">
         </form> 
 
 
