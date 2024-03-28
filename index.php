@@ -34,10 +34,10 @@
             require 'Database.php';
 
             try {
-                $conn = getConnection();
-                $sql = "SELECT eventname, description, location, capacity, date FROM em_events";
+                $conn = getConnection(); //db connection 
+                $sql = "SELECT eventname, description, location, capacity, date FROM em_events";//sql to display events
 
-                $result = $conn->query($sql);
+                $result = $conn->query($sql);//executing sql
 
                 //checking if the query executed successfully
                 if ($result) {
@@ -45,7 +45,7 @@
                     $events = $result->fetchAll(PDO::FETCH_ASSOC);
 
                     //displaying all current events
-                    if (count($events) > 0) {
+                    if (count($events) > 0) {//displaying details of all current events in db
                         foreach ($events as $event) {
                             echo "<li>";
                             echo "<span class='event-name'>" . $event["eventname"] . "</span><br>";
@@ -53,12 +53,12 @@
                             echo "<span class='event-details'>location: " . $event["location"] . "</span><br>";
                             echo "<span class='event-details'>avaliable spaces: " . $event["capacity"] . "</span>";
                             echo "<span class='event-details'>date: " . $event["date"] . "</span>";
-                            echo "<a href='#' class='book-btn'>click to book</a>"; //book button
+                            echo "<a href='booking.php' class='book-btn'>click to book</a>"; //link to book 
                             echo "</li>";
                         }
                         
                     } else {
-                        echo "sorry, no events currently";
+                        echo "sorry, no events currently";//if there's no events in the db currently 
                     }
                 } else {
                     echo "error executing query";

@@ -1,4 +1,4 @@
-/* a display way to sorte the appearance of the page */
+/* a display way to sort the appearance of the page */
 #gridCont {
 	display: grid;
 	grid-template-rows:[header] 30% [nav] 15% [content] 55%;
@@ -97,10 +97,18 @@ button {
 }
 
 ul {
+	font-family: Century Gothic;
+	font-size: 1.2em;
+	color: #0066cc;
+	border-color: #3399ff;
 	list-style-type: none;
 	overflow: hidden;
 }
 
 li {
+	font-family: Century Gothic;
+	font-size: 1.2em;
+	color: #0066cc;
+	border-color: #3399ff;
 	float: left;
 }

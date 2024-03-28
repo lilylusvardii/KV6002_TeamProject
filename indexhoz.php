@@ -31,29 +31,29 @@
 
             try {
                 $conn = getConnection();
-                $sql = "SELECT eventname, description, location, capacity, date FROM em_events";
+                $sql = "SELECT eventname, description, location, capacity, date FROM em_events";//sql statement to get events
 
-                $result = $conn->query($sql);
+                $result = $conn->query($sql);//executing query
 
                 if ($result) {
                     $events = $result->fetchAll(PDO::FETCH_ASSOC);
 
                     if (count($events) > 0) {
-                        foreach ($events as $event) {
+                        foreach ($events as $event) {//displaying events
                             echo "<li>";
                             echo "<span class='event-name'>" . htmlspecialchars($event["eventname"], ENT_QUOTES) . "</span><br>";
                             echo "<span class='event-details'>description: " . htmlspecialchars($event["description"], ENT_QUOTES) . "</span><br>";
                             echo "<span class='event-details'>location: " . htmlspecialchars($event["location"], ENT_QUOTES) . "</span><br>";
                             echo "<span class='event-details'>available spaces: " . htmlspecialchars($event["capacity"], ENT_QUOTES) . "</span>";
                             echo "<span class='event-details'>date: " . htmlspecialchars($event["date"], ENT_QUOTES) . "</span>";
-                            echo "<button class='book-btn' data-eventname='" . htmlspecialchars($event["eventname"], ENT_QUOTES) . "'>click to book</button>";
+                            echo "<a href='booking.php' class='book-btn'>click to book</a>"; //link to book
                             echo "</li>";
                         }
                     } else {
-                        echo "Sorry, no events currently.";
+                        echo "Sorry, no events currently.";//if no events are in db 
                     }
                 } else {
-                    echo "Error executing query.";
+                    echo "Error executing query.";//error handling
                 }
             } catch(PDOException $e) {
                 echo "Database error: " . $e->getMessage();
