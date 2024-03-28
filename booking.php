@@ -25,7 +25,7 @@
     <main>
 
         <h2>confirm booking below</h2>
-        <form action="/bookingConfirmed.php">
+        <form action="bookingConfirmed.php" method="POST">
             <input type="checkbox" id="check1" name="check1" value="confirm1">
             <label for="confirm1"> I agree I've read the terms and conditions</label><br>
             <input type="checkbox" id="check2" name="check2" value="confirm2">
