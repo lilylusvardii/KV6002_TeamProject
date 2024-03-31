@@ -1,45 +1,43 @@
 <?php
 session_start();
 
-require 'Database.php' ;
+require 'Database.php';
 
+$conn = getConnection();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM em_user WHERE username = '$username' AND password = '$password'";
+    $sql = "SELECT * FROM em_user WHERE username = :username AND password = :password";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $username, $password);
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':password', $password);
     $stmt->execute();
-    $result = $stmt->get_result();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    if ($result) {
+        $isAdmin = $result['cat_id'] == 1;
 
-    if ($result->num_rows == 1) {
-        $user = $result->fetch_assoc();
-        $isAdmin = $user['cat_id'] == 1;
-
-        
         // Set session variables
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
-        $_SESSION['isAdmin'] = $isAdmin;
+        $_SESSION['isAdmin'] = $isAdmin; // Save admin status as a session variable
 
-        header("home: index.php");
-    } else {
-        echo"invalid username or password";
-    }
-
-    if (isset($_GET['logout'])) {
-    
-        $_SESSION = array();
-        session_destroy();
-
-        header("Login.html");
+        header("Location: index.php");
         exit();
+    } else {
+        echo "Invalid username or password";
     }
 }
 
+if (isset($_GET['logout'])) {
+    // Destroy session
+    $_SESSION = array();
+    session_destroy();
 
-$stmt->close();
+    // Redirect to login page
+    header("Location: Login.html");
+    exit();
+}
 ?>
