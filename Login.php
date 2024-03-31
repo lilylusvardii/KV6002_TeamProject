@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['username'] = $username;
         $isAdmin = isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : false; // Save admin status as a session variable
 
-        header("Location: index.php");
+        header("Location: indexhoz.php");
         exit();
     } else {
         echo "Invalid username or password";
