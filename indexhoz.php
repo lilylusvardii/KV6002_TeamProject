@@ -7,6 +7,12 @@
     <title>Charity Events</title>
 </head>
 <body>
+    <?php
+    //part of adding events subsystem
+        session_start();
+        //checking if user is admin
+        $isAdmin = isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : false;
+    ?>
     <section>
         <h4>Language selection</h4>
         <div id="google_translate_element"></div> <!-- Google Translate widget will appear here -->  
@@ -14,19 +20,12 @@
 
     <header>
         <nav>
-        <?php
-        // Start session
-        session_start();
-
-        // Check if user is logged in as admin
-        $isAdmin = isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : false;
-        ?>
             <ul>
                 <li><a href="signuphoz.html">Sign Up</a></li>
                 <li><a href="Login.html"> Login</a></li>
-                <?php if ($isAdmin): ?>
+            <?php if ($isAdmin): ?>
                 <li><a href='Events.php'> Events Management</a></li>
-                <?php endif; ?>
+            <?php endif; ?>
             </ul>
         </nav>
     </header>

@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Set session variables
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
-        $_SESSION['isAdmin'] = $isAdmin; // Save admin status as a session variable
+        $isAdmin = isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : false; // Save admin status as a session variable
 
         header("Location: index.php");
         exit();
