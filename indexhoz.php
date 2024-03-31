@@ -44,8 +44,8 @@
                             echo "<span class='event-name'>" . htmlspecialchars($event["eventname"], ENT_QUOTES) . "</span><br>";
                             echo "<span class='event-details'>description: " . htmlspecialchars($event["description"], ENT_QUOTES) . "</span><br>";
                             echo "<span class='event-details'>location: " . htmlspecialchars($event["location"], ENT_QUOTES) . "</span><br>";
-                            echo "<span class='event-details'>available spaces: " . htmlspecialchars($event["capacity"], ENT_QUOTES) . "</span>";
-                            echo "<span class='event-details'>date: " . htmlspecialchars($event["date"], ENT_QUOTES) . "</span>";
+                            echo "<span class='event-details'>available spaces: " . htmlspecialchars($event["capacity"], ENT_QUOTES) . "</span><br>";
+                            echo "<span class='event-details'>date: " . htmlspecialchars($event["date"], ENT_QUOTES) . "</span><br>";
                             echo "<a href='booking.php' class='book-btn'>click to book</a>"; //link to book
                             echo "</li>";
                         }
