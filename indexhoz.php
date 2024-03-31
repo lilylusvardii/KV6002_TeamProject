@@ -10,7 +10,7 @@
     <?php
     //part of adding events subsystem
         session_start();
-        //checking if user is admin
+        //checking if user is logged in as an admin
         $isAdmin = isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : false;
     ?>
     <section>
