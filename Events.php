@@ -16,9 +16,9 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="SignUp.php"> Sign Up</a></li>
-                <li><a href="Login.php"> Login</a></li>
+                <li><a href="indexhoz.php">Home</a></li>
+                <li><a href="signup.php"> Sign Up</a></li>
+                <li><a href="Login.html"> Login</a></li>
 
             </ul>
         </nav>

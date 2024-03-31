@@ -14,10 +14,19 @@
 
     <header>
         <nav>
+        <?php
+        // Start session
+        session_start();
+
+        // Check if user is logged in as admin
+        $isAdmin = isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : false;
+        ?>
             <ul>
                 <li><a href="signuphoz.html">Sign Up</a></li>
                 <li><a href="Login.html"> Login</a></li>
-                <li><a href='Events.html'> Events Management</a></li>
+                <?php if ($isAdmin): ?>
+                <li><a href='Events.php'> Events Management</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>
