@@ -51,8 +51,8 @@
                             echo "<span class='event-name'>" . $event["eventname"] . "</span><br>";
                             echo "<span class='event-details'>description: " . $event["description"] . "</span><br>";
                             echo "<span class='event-details'>location: " . $event["location"] . "</span><br>";
-                            echo "<span class='event-details'>avaliable spaces: " . $event["capacity"] . "</span>";
-                            echo "<span class='event-details'>date: " . $event["date"] . "</span>";
+                            echo "<span class='event-details'>avaliable spaces: " . $event["capacity"] . "</span><br>";
+                            echo "<span class='event-details'>date: " . $event["date"] . "</span><br>";
                             echo "<a href='booking.php' class='book-btn'>click to book</a>"; //link to book 
                             echo "</li>";
                         }
