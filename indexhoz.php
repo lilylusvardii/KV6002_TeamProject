@@ -11,7 +11,7 @@
     //part of adding events subsystem
         session_start();
         //checking if user is admin
-        $isAdmin = isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : false;
+        $isAdmin = isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : true;
     ?>
     <section>
         <h4>Language selection</h4>
