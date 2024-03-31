@@ -23,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
         $_SESSION['isAdmin'] = $isAdmin;
-        //$isAdmin = isset($_SESSION['isAdmin']) ? $_SESSION['isAdmin'] : false; // Save admin status as a session variable
 
         header("Location: indexhoz.php");
         exit();

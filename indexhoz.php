@@ -23,7 +23,7 @@
             <ul>
                 <li><a href="signuphoz.html">Sign Up</a></li>
                 <li><a href="Login.html"> Login</a></li>
-            <?php if ($isAdmin): ?>
+            <?php if ($isAdmin): ?> <!--part of adding system, events page only displays if user is logged in as an admin -->
                 <li><a href='Events.php'> Events Management</a></li>
             <?php endif; ?>
             </ul>
