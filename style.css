@@ -29,12 +29,35 @@ main {
 }
 nav {
 	grid-area: nav;
-	margin-right: 5%;
-	margin-left: 5%;
+	margin-right: 15%;
+	margin-left: 15%;
 	background-color: #92b5f2;
 	font-size: 80%;
 	font-family: Century Gothic;
 }
+nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #73abe3;
+}
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #518ee8;
+}
+
 
 /* all under is to style diffrent tags of html*/
 html, body {
