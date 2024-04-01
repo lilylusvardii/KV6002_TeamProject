@@ -20,7 +20,7 @@ const db = new sqlite3.Database('em2.sqlite', sqlite3.OPEN_READWRITE, (err) => {
 // Function to check for upcoming events and send an SMS
 function checkAndSendSMSForUpcomingEvents() {
     const query = `
-        SELECT * FROM events
+        SELECT * FROM em_events
         WHERE date >= datetime('now') AND date < datetime('now', '+24 hours')
     `;
 
