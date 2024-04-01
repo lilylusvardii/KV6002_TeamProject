@@ -13,7 +13,7 @@ const twilioClient = new twilio('AC3ac89a780083b70ff78362038796e9d7', 'edd8da305
 app.post('/bookEvent', (req, res) => {
     // Change 'phoneNumber' to 'phone' to match the key name sent from the client
     const { phone, eventName } = req.body;
-    const confirmationMessage = `Your booking for the event '${eventName}' has been confirmed!`;
+    const confirmationMessage = `Your booking for the event has been confirmed!`;
 
     twilioClient.messages.create({
         body: confirmationMessage,
