@@ -12,8 +12,7 @@ try {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
-        $sql = "INSERT INTO em_user (username, password, cat_id, location, phonenumber, icg_id) 
-                VALUES (:username, :password, :cat_id, :location, :phonenumber, :icg_id)";
+        $sql = "INSERT INTO em_user (username, password, cat_id, location, phonenumber, icg_id) VALUES (:username, :password, :cat_id, :location, :phonenumber, :icg_id)";
         $stmt = $dbConnection->prepare($sql); // Prepare data for the database
         $stmt->bindParam(':username', $_POST['username']);
         $stmt->bindParam(':password', password_hash($_POST['password'], PASSWORD_DEFAULT));
