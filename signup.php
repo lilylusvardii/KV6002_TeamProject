@@ -11,16 +11,36 @@ try {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validate form data
+    $username = trim($_POST['username']);
+    $password = $_POST['password'];
+    $location = trim($_POST['location']);
+    $phone = trim($_POST['phonenumber']);
+    $icg_id = intval($_POST['icg_id']);
+
+    if (empty($username) || empty($password) || empty($location) || empty($phone) || empty($icg_id)) {
+        echo "All fields are required";
+        exit();
+    }
+
+    // Prepare data for insertion
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
     try {
+        // Prepare SQL statement
         $sql = "INSERT INTO em_user (username, password, cat_id, location, phonenumber, icg_id) VALUES (:username, :password, :cat_id, :location, :phonenumber, :icg_id)";
-        $stmt = $dbConnection->prepare($sql); // Prepare data for the database
-        $stmt->bindParam(':username', $_POST['username']);
-        $stmt->bindParam(':password', password_hash($_POST['password'], PASSWORD_DEFAULT));
-        $stmt->bindParam(':cat_id', 2);
-        $stmt->bindParam(':location', $_POST['location']);
-        $stmt->bindParam(':phonenumber', $_POST['phonenumber']);
-        $stmt->bindParam(':icg_id', $_POST['icg_id']);
-        $result = $stmt->execute(); // Submit data to database
+        $stmt = $dbConnection->prepare($sql);
+
+        // Bind parameters
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':password', $hashedPassword);
+        $stmt->bindValue(':cat_id', 2);
+        $stmt->bindParam(':location', $location);
+        $stmt->bindParam(':phonenumber', $phone);
+        $stmt->bindParam(':icg_id', $icg_id);
+
+        // Execute the query
+        $result = $stmt->execute();
 
         if ($result) {
             echo "User signed up successfully";
@@ -28,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error signing up";
         }
     } catch (PDOException $e) {
-        echo "Database error: " . $e->getMessage(); // Error handling
+        echo "Database error: " . $e->getMessage();
     }
 } else {
     echo "Invalid request";
