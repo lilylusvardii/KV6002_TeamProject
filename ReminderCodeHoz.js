@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 
 // Initialize Twilio client
-const twilioClient = new twilio('AC3ac89a780083b70ff78362038796e9d7', 'edd8da305f965427994391ba3b001537');
+const twilioClient = new twilio('', '');
 
 // Initialize SQLite database
 const db = new sqlite3.Database('em2.sqlite', sqlite3.OPEN_READWRITE, (err) => {
@@ -57,5 +57,3 @@ app.get('/sendEventReminders', (req, res) => {
 const PORT = process.env.PORT || 3006;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-// Remember to handle database connection closure properly in your real application
-// Especially when shutting down your server
