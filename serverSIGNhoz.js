@@ -18,8 +18,8 @@ app.post('/signupForm', (req, res) => {
 
     twilioClient.messages.create({
         body: `Your verification code is: ${verificationCode}`,
-        to: phoneNumber, // Text this number
-        from: process.env.TWILIO_PHONE_NUMBER // From a valid Twilio number
+        to: phoneNumber,
+        from: process.env.TWILIO_PHONE_NUMBER
     })
     .then(message => {
         console.log(message.sid);
