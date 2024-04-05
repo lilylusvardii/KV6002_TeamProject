@@ -8,17 +8,16 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const twilioClient = new twilio('AC3ac89a780083b70ff78362038796e9d7', 'edd8da305f965427994391ba3b001537');
+const twilioClient = new twilio('', '');
 
 app.post('/bookEvent', (req, res) => {
-    // Change 'phoneNumber' to 'phone' to match the key name sent from the client
     const { phone, eventName } = req.body;
     const confirmationMessage = `Your booking for the event has been confirmed!`;
 
     twilioClient.messages.create({
         body: confirmationMessage,
-        to: phone, // Adjusted to match the corrected variable name
-        from: '+447449615948' // Your Twilio number
+        to: phone,
+        from: '+447449615948'
     })
     .then(message => {
         console.log(`Message sent with SID: ${message.sid}`);
