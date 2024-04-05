@@ -1,41 +1,37 @@
 <?php
 session_start();
-    require 'Database.php' ;
-	
+require 'Database.php';
+
+// Create a database connection
+try {
+    $dbConnection = getConnection();
+} catch (PDOException $e) {
+    echo "Database connection error: " . $e->getMessage();
+    exit();
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	
-   	// Create a database connection
-   	$conn = getConnection();
-	
-    	$username = $_POST['username'];
-    	$password = $_POST['password'];
-    	$cat_id = 2;
-    	$location = $_POST['location'];
-	$phonenumber = $_POST['phonenumber'];
-	$icg_id = $_POST['icg_id'];
+    try {
+        $sql = "INSERT INTO em_user (username, password, cat_id, location, phonenumber, icg_id) 
+                VALUES (:username, :password, :cat_id, :location, :phonenumber, :icg_id)";
+        $stmt = $dbConnection->prepare($sql); // Prepare data for the database
+        $stmt->bindParam(':username', $_POST['username']);
+        $stmt->bindParam(':password', password_hash($_POST['password'], PASSWORD_DEFAULT));
+        $stmt->bindParam(':cat_id', 2);
+        $stmt->bindParam(':location', $_POST['location']);
+        $stmt->bindParam(':phonenumber', $_POST['phonenumber']);
+        $stmt->bindParam(':icg_id', $_POST['icg_id']);
+        $result = $stmt->execute(); // Submit data to database
 
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-    $sql = "INSERT INTO em_user (username, password, cat_id, location, phonenumber, icg_id) 
-					VALUES (:username, :password, :cat_id, :location, :phonenumber, :icg_id)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindValue(':username', $username, SQLITE3_TEXT);
-    $stmt->bindValue(':password', $hashedPassword, SQLITE3_TEXT);
-    $stmt->bindValue(':cat_id', $cat_id, SQLITE3_INTEGER);
-    $stmt->bindValue(':location', $location, SQLITE3_TEXT);
-    $stmt->bindValue(':phonenumber', $phonenumber, SQLITE3_TEXT);
-    $stmt->bindValue(':icg_id', $icg_id, SQLITE3_INTEGER);
-    $result = $stmt->execute();
-
-    if ($result) {
-        echo "User signed up successfully";
-    } else {
-        echo "Error signing up: " . $conn->lastErrorMsg();
+        if ($result) {
+            echo "User signed up successfully";
+        } else {
+            echo "Error signing up";
+        }
+    } catch (PDOException $e) {
+        echo "Database error: " . $e->getMessage(); // Error handling
     }
-
-    $stmt->close();
 } else {
     echo "Invalid request";
 }
-
 ?>
