@@ -1,4 +1,5 @@
 <?php
+// Sabeeha signup subsystem
 session_start();
 require 'Database.php';
 
@@ -6,7 +7,8 @@ require 'Database.php';
 try {
     $dbConnection = getConnection();
 } catch (PDOException $e) {
-    echo "Database connection error: " . $e->getMessage();
+    $response = array('success' => false, 'message' => 'Database connection error: ' . $e->getMessage());
+    echo json_encode($response);
     exit();
 }
 
@@ -15,16 +17,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
     $location = trim($_POST['location']);
-    $phone = trim($_POST['phonenumber']);
+    $phone = trim($_POST['phone']); // Adjusted to match the form field name
     $icg_id = intval($_POST['icg_id']);
 
     if (empty($username) || empty($password) || empty($location) || empty($phone) || empty($icg_id)) {
-        echo "All fields are required";
+        $response = array('success' => false, 'message' => 'All fields are required');
+        echo json_encode($response);
         exit();
     }
 
     // Prepare data for insertion
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+	
+    // this is for future development to make it more secure.
+	//$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     try {
         // Prepare SQL statement
@@ -33,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Bind parameters
         $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $hashedPassword);
+        $stmt->bindParam(':password', $password);
         $stmt->bindValue(':cat_id', 2);
         $stmt->bindParam(':location', $location);
         $stmt->bindParam(':phonenumber', $phone);
@@ -43,14 +48,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $stmt->execute();
 
         if ($result) {
-            echo "User signed up successfully";
+            $response = array('success' => true, 'message' => 'User signed up successfully');
+            echo json_encode($response);
         } else {
-            echo "Error signing up";
+            $response = array('success' => false, 'message' => 'Error signing up');
+            echo json_encode($response);
         }
     } catch (PDOException $e) {
-        echo "Database error: " . $e->getMessage();
+        $response = array('success' => false, 'message' => 'Database error: ' . $e->getMessage());
+        echo json_encode($response);
     }
 } else {
-    echo "Invalid request";
+    $response = array('success' => false, 'message' => 'Invalid request');
+    echo json_encode($response);
 }
 ?>
