@@ -17,7 +17,7 @@
         <nav>
             <ul>
                 <li><a href="indexhoz.php">Home</a></li>
-                <li><a href="signup.php"> Sign Up</a></li>
+                <li><a href="signuphoz.html"> Sign Up</a></li>
                 <li><a href="Login.html"> Login</a></li>
 
             </ul>
