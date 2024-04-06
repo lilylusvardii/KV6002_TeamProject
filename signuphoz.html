@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html> <!-- Sabeeha signup subsystem + Alex varificaton -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,47 +58,54 @@
     </form>
 
     <script>
-        document.getElementById('signupForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            const formData = new FormData(this);
-            let isValid = true;
-            
-            // Check each field in the form data to ensure it's not empty
-            for (let value of formData.values()) {
-                if (!value) {
-                    isValid = false;
-                    break;
-                }
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+        const formData = new FormData(this);
+        let isValid = true;
+        
+        // Check each field in the form data to ensure it's not empty
+        for (let value of formData.values()) {
+            if (!value) {
+                isValid = false;
+                break;
             }
+        }
 
-            if (!isValid) {
-                alert('Please fill out all fields.');
-                return;
+        if (!isValid) {
+            alert('Please fill out all fields.');
+            return;
+        }
+
+        // If all fields are filled, proceed with the fetch request
+        const data = {};
+        formData.forEach((value, key) => { data[key] = value; });
+
+        fetch('signup.php', { // Sabaeeha: this code was modified to make the signup proceed while in Alex code it fetch the local host to do the twillio part //'http://localhost:3001/signupForm',
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
-
-            // If all fields are filled, proceed with the fetch request
-            const data = {};
-            formData.forEach((value, key) => { data[key] = value; });
-
-            fetch('http://localhost:3001/signupForm', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => response.json())
-            .then(data => {
+            return response.json();
+        })
+        .then(data => {
+            if (data.success) {
                 alert(data.message);
                 // Redirect only after a successful form submission
                 window.location.href = 'VerificationCode.html';
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred, please try again.');
-            });
+            } else {
+                throw new Error(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred: ' + error.message);
         });
-    </script>
+    });
+</script>
+
 	
 	<!-- Google Translate -->
     <script type="text/javascript">
